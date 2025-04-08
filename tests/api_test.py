@@ -6,6 +6,8 @@ client = TestClient(app)
 
 
 def test_hello_world():
-    response = client.get("/")
+    query = {"query": "teste"}
+    response = client.post("/", json=query)
+
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello, World!"}
+    assert response.json() == {"mensagem_recebida": "teste"}
